@@ -1,0 +1,116 @@
+@import "mixins.less";
+@import "variables.less";
+
+/* Progress bar css*/
+.progress-bar-wrapper{
+  margin-top: 10px;
+
+  .progress{
+    border-radius: 0;
+    height: 25px;
+    box-shadow: none;
+    overflow: visible;
+    margin-top: 50px;
+
+    .progress-bar{
+      box-shadow: none;
+      text-align: left;
+      padding-left: 10px;
+      position: relative;
+      overflow: visible !important;
+
+      transition: width .2s linear;
+      -webkit-transition: width .2s linear;
+      -moz-transition: width .2s linear;
+      -o-transition: width .2s linear;
+
+      .font-o(13px, @weight-bold, 24px, @white-color);
+
+    }
+
+    &.progress-primary{
+      .progress-bar{
+        background-color: @brand-primary;       
+        .pvalue{
+          border: 2px solid @brand-primary;
+          &:before{
+            border-color: @brand-primary rgba(194, 225, 245, 0) rgba(194, 225, 245, 0);
+          }
+        }
+      }
+    }
+
+    &.progress-secondary{
+      .progress-bar{
+        background-color: @brand-secondary;
+        .pvalue{
+          border: 2px solid @brand-secondary;
+          &:before{
+            border-color: @brand-secondary rgba(194, 225, 245, 0) rgba(194, 225, 245, 0);
+          }
+        }
+      }      
+    }
+
+    &.progress-yellow{
+      .progress-bar{
+        background-color: #f3b500;
+        .pvalue{
+          border: 2px solid #f3b500;
+          &:before{
+            border-color: #f3b500 rgba(194, 225, 245, 0) rgba(194, 225, 245, 0);
+          }
+        }
+      }      
+    }    
+  }
+
+  .pvalue {
+      background: #fff;
+      border: 2px solid #000;
+      display: inline-block;
+      margin-bottom: 8px;
+      padding: 0 10px;
+      position: absolute;
+      right: -36px;
+      top: -40px;
+      text-align: center;
+      width: 50px;
+      height: 30px;
+
+      .inner{
+        transition: transform .2s linear;
+        -webkit-transition: transform .2s linear;
+        -moz-transition: transform .2s linear;
+        -o-transition: transform .2s linear;
+
+        .font-o(13px, @weight-bold, 24px, @gray-dark);
+        &:after{
+          content: attr(aria-valuenow);
+        }
+      }
+    }
+    .pvalue:after, .pvalue:before {
+      top: 100%;
+      left: 50%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .pvalue:after {
+      border-color: rgba(136, 183, 213, 0);
+      border-top-color: #fff;
+      border-width: 5px;
+      margin-left: -5px;
+    }
+    .pvalue:before {
+      border-color: rgba(194, 225, 245, 0);
+      border-top-color: #000;
+      border-width: 8px;
+      margin-left: -8px;
+    }
+}

@@ -1,0 +1,108 @@
+.transition
+{
+	transition: all 0.5s;
+}
+
+.font(@font-size, @font-weight, @line-height, @color)
+{
+	font-size: @font-size;
+	font-weight: @font-weight;
+	line-height: @line-height;
+	color: @color;
+}
+
+.font-o(@font-size, @font-weight, @line-height, @color)
+{
+  font-family: @font-primary;
+  .font(@font-size, @font-weight, @line-height, @color);
+}
+
+.right-arrow(@top, @right, @color, @border-width)
+{
+    position: relative;
+    &:after{
+      content: '';
+      position: absolute;
+      border-style: solid;
+      border-width: @border-width 0 @border-width @border-width;
+      border-color: transparent @color;
+      display: block;
+      width: 0;
+      z-index: 1;
+      right: @right;
+      top: 50%;
+      margin-top: -@border-width;
+    }
+}
+
+.left-arrow(@top, @right, @color, @border-width)
+{
+  position: relative;
+  &:after{
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: @border-width @border-width @border-width 0;
+    border-color: transparent @color;
+    display: block;
+    width: 0;
+    z-index: 1;
+    left: @right;
+    top: 50%;
+    margin-top: -@border-width;
+  }
+}
+
+.down-arrow(@top, @right, @color, @border-width)
+{
+  position: relative;
+  &:after{
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: @border-width @border-width 0 @border-width;
+    border-color: transparent @color;
+    border-color: @color transparent transparent transparent;
+    display: block;
+    width: 0;
+    z-index: 1;
+    left: @right;
+    top: @top;
+  }
+}
+
+.down-center-arrow(@top, @color, @border-width)
+{
+  position: relative;
+  &:after{
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: @border-width @border-width 0 @border-width;
+    border-color: transparent @color;
+    border-color: @color transparent transparent transparent;
+    display: block;
+    width: 0;
+    z-index: 1;
+    left: @right;
+    top: @top;
+  }
+}
+
+.down-pointer-bottom(@bottom, @left, @color, @border-width)
+{
+  position: relative;
+  &:after{
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: @border-width @border-width 0 @border-width;
+    border-color: transparent @color;
+    border-color: @color transparent transparent transparent;
+    display: block;
+    width: 0;
+    z-index: 1;
+    left: @left;
+    bottom: @bottom;
+  }
+}

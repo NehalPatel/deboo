@@ -11,9 +11,12 @@
     // Create the defaults plugin
     var deboo = "deboo",
         defaults = {
-            speed   : 50,
-            progress : 100,
-            min_value : 0
+            propertyName: "value",
+            width   : 100,
+            height  : 100,
+            color   : "#ff00ff",
+            border  : "1px solid red",
+            background_color : "#ff00ff"
         };
 
     // plugin constructor
@@ -37,17 +40,18 @@
         
         animate_progress: function(plugin, el, options){
             var percentageWidth = $(el).closest(".progress").outerWidth()/100;
-            
-            $(el).css({"width" : options.min_value + "%"});
-            $(el).find(".inner").attr("aria-valuenow", options.min_value+'%');
+            var progress = $(el).data('progress');
 
-            if(options.min_value >= options.progress)
+            $(el).css({"width" : current + "%"});
+            $(el).find(".inner").attr("aria-valuenow", current+'%');
+
+            if(current >= progress)
                 return;
             
-            options.min_value++;
+            current++;
             setTimeout(function(){
                 plugin.animate_progress(plugin, el, options);
-            },options.speed);
+            },50);
         }
     };
 

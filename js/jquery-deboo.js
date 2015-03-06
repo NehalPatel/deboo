@@ -7,16 +7,14 @@
 
 ;(function ( $, window, document, undefined ) {
 
-    var current = 0;
     // Create the defaults plugin
     var deboo = "deboo",
         defaults = {
-            propertyName: "value",
-            width   : 100,
-            height  : 100,
-            color   : "#ff00ff",
-            border  : "1px solid red",
-            background_color : "#ff00ff"
+            start_value : 0,
+            end_value : 100,
+            wrap : false,
+            skill:'Dev',
+            pclass : 'progress-primary'
         };
 
     // plugin constructor
@@ -34,21 +32,45 @@
     Deboo.prototype = {
 
         init: function() {
-            // this.yourOtherFunction(this.element, this.options).            
+            // this.yourOtherFunction(this.element, this.options).
+            // 
+            this.wrap_element(this.element, this.options);            
             this.animate_progress(this, this.element, this.options);
+        },
+
+        wrap_element : function(element, options){
+
+
+           var parent = $("<div/>", {
+                'class' : 'progress'
+           }).addClass(options.pclass);
+           
+           $(element).wrap(parent).addClass('progress-bar');
+
+           $("<span/>", {
+                'class' : 'skill',
+                'text'  : options.skill
+           }).appendTo(element);
+
+           var inner = $("<div/>", {
+                'class' : 'pvalue'
+           }).appendTo(element);
+
+           $("<span/>", {
+                'class' : 'inner'
+           }).appendTo(inner);
         },
         
         animate_progress: function(plugin, el, options){
             var percentageWidth = $(el).closest(".progress").outerWidth()/100;
-            var progress = $(el).data('progress');
 
-            $(el).css({"width" : current + "%"});
-            $(el).find(".inner").attr("aria-valuenow", current+'%');
+            $(el).css({"width" : options.start_value + "%"});
+            $(el).find(".inner").attr("aria-valuenow", options.start_value+'%');
 
-            if(current >= progress)
+            if(options.start_value >= options.end_value)
                 return;
             
-            current++;
+            options.start_value++;
             setTimeout(function(){
                 plugin.animate_progress(plugin, el, options);
             },50);

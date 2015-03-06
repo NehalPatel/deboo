@@ -9,9 +9,31 @@
 
 	<script type="text/javascript">
 		jQuery(document).ready(function($) {
-			$("#progress-bar1").deboo();
-			$("#progress-bar2").deboo();
-			$("#progress-bar3").deboo();
+			$("#progress-bar1").deboo({
+				start_value : 0,
+	            end_value : 50,
+	            skill:'CSS3',
+	            pclass : 'progress-primary'
+			});
+			$("#progress-bar2").deboo({
+				start_value : 0,
+	            end_value : 70,
+	            skill:'HTML5',
+	            pclass : 'progress-secondary'
+			});
+			$("#progress-bar3").deboo({
+				start_value : 0,
+	            end_value : 80,
+	            skill:'jQuery',
+	            pclass : 'progress-yellow'
+			});
+
+			$("#progress-bar4").deboo({
+				start_value : 0,
+	            end_value : 50,
+	            skill:'PHOTOSHOP',
+	            pclass : 'progress-yellow'
+			});
 
 		});
 	</script>
@@ -20,26 +42,9 @@
 
 	<div class="progress-bar-wrapper">
 
-        <div class="progress progress-primary">
-            <div id="progress-bar1" class="progress-bar" data-progress="40" aria-valuemin="0" aria-valuemax="100">
-                <span class="skill">HTML</span>
-                <div class="pvalue"><span class="inner" aria-valuenow="0%"></span></div>
-            </div>
-        </div>
-
-        <div class="progress progress-secondary">
-            <div id="progress-bar2" class="progress-bar" data-progress="60" aria-valuemin="0" aria-valuemax="100">
-                <span class="skill">PHP</span>
-                <div class="pvalue"><span class="inner" aria-valuenow="0%"></span></div>
-            </div>
-        </div>
-
-        <div class="progress progress-yellow">
-	        <div id="progress-bar3" class="progress-bar" role="progressbar" data-progress="75" aria-valuemin="0" aria-valuemax="100">
-	            <span class="skill">CSS3</span>
-	            <div class="pvalue"><span class="inner" aria-valuenow="0%"></span></div>
-	        </div>                                        
-	    </div>
-    </div>
+        <div id="progress-bar1"></div>
+        <div id="progress-bar2"></div>
+        <div id="progress-bar3"></div>
+        <div id="progress-bar4"></div>
 </body>
 </html>

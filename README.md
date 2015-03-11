@@ -16,25 +16,25 @@
 
 ```javascript
 $("#myprogress-bar").deboo({
-	start_value : 0,
+    start_value : 0,
     end_value : 80,
     skill:'jQuery Plugin',
     pclass : 'progress-yellow',
     beforeStart : function(){
-    	//code before start
+        //code before start
     },
     afterEnd : function(){
-    	//code after complete
+        //code after complete
     },
     onProgress : function(current_value){
-    	//code on progress
+        //code on progress
     }
 });
 ```
 
 ## API
 
-Check the API and method usage with example here: https://github.com/NehalPatel/deboo
+Check the API and method usage with example here: https://nehalpatel.in/deboo
 
 ## Release History
  * **v0.1.0** - 2015-03-12
@@ -47,6 +47,8 @@ Check the API and method usage with example here: https://github.com/NehalPatel/
 
 - [Twitter](https://twitter.com/iNehalPatel)
 - [Github](https://github.com/NehalPatel)
+- [Facebook](https://facebook.com/iNehalPatel)
+- [StackOverflow](http://stackoverflow.com/users/465554/nehal)
 - [Personal page](http://nehalpatel.in/)  
 
 ## License

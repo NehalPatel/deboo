@@ -12,9 +12,14 @@
         defaults = {
             start_value : 0,
             end_value : 100,
+            speed : 50,
             wrap : false,
-            skill:'Dev',
-            pclass : 'progress-primary'
+            skill:'Unknown',
+            pclass : 'progress-primary',
+
+            beforeStart   : $.noop, // Before changing in current item
+            afterEnd    : $.noop, // After opening
+            onProgress  : $.noop
         };
 
     // plugin constructor
@@ -33,19 +38,32 @@
 
         init: function() {
             // this.yourOtherFunction(this.element, this.options).
-            // 
+            
+            this.options.beforeStart.call();
+
             this.wrap_element(this.element, this.options);            
             this.animate_progress(this, this.element, this.options);
+
+        },
+
+        _flipOnComplete : function(element, options){
+            setTimeout(function(){
+                $(".flip-container", element).addClass('hover');
+
+                setTimeout(function(){
+                    $(".flip-container", element).removeClass('hover');
+                }, 1000);
+
+            }, 200);
         },
 
         wrap_element : function(element, options){
 
-
-           var parent = $("<div/>", {
+           var wrapper = $("<div/>", {
                 'class' : 'progress'
            }).addClass(options.pclass);
            
-           $(element).wrap(parent).addClass('progress-bar');
+           $(element).wrap(wrapper).addClass('progress-bar');
 
            $("<span/>", {
                 'class' : 'skill',
@@ -53,27 +71,40 @@
            }).appendTo(element);
 
            var inner = $("<div/>", {
-                'class' : 'pvalue'
+                'class' : 'pvalue flip-container'
            }).appendTo(element);
 
-           $("<span/>", {
-                'class' : 'inner'
+           var flipper = $("<div/>", {
+                'class' : 'flipper'
            }).appendTo(inner);
+
+           $("<span/>", {
+                'class' : 'inner front'
+           }).appendTo(flipper);
+
+           $("<span/>", {
+                'class' : 'inner back'
+           }).appendTo(flipper);
         },
         
         animate_progress: function(plugin, el, options){
             var percentageWidth = $(el).closest(".progress").outerWidth()/100;
 
             $(el).css({"width" : options.start_value + "%"});
-            $(el).find(".inner").attr("aria-valuenow", options.start_value+'%');
+            $(el).find(".front").attr("aria-valuenow", options.start_value+'%');
+            $(el).find(".back").attr("aria-valuenow", 'DONE');
 
-            if(options.start_value >= options.end_value)
+            if(options.start_value >= options.end_value){
+                plugin.options.afterEnd.call();
+                plugin._flipOnComplete(el, options);
                 return;
+            }
             
             options.start_value++;
             setTimeout(function(){
                 plugin.animate_progress(plugin, el, options);
-            },50);
+                plugin.options.onProgress(plugin.options.start_value);
+            },plugin.options.speed);
         }
     };
 

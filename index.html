@@ -25,26 +25,27 @@
 				start_value : 0,
 	            end_value : 80,
 	            skill:'jQuery',
-	            pclass : 'progress-yellow'
-			});
-
-			$("#progress-bar4").deboo({
-				start_value : 0,
-	            end_value : 50,
-	            skill:'PHOTOSHOP',
-	            pclass : 'progress-yellow'
+	            pclass : 'progress-yellow',
+	            beforeStart : function(){
+	            	console.log('about to start 2');
+	            },
+	            afterEnd : function(){
+	            	console.log('after end 2');
+	            },
+	            onProgress : function(current_value){
+	            	//console.log(current_value);
+	            }
 			});
 
 		});
 	</script>
 </head>
 <body>
-
 	<div class="progress-bar-wrapper">
-
         <div id="progress-bar1"></div>
         <div id="progress-bar2"></div>
         <div id="progress-bar3"></div>
         <div id="progress-bar4"></div>
+    </div>
 </body>
 </html>

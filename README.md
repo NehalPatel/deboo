@@ -34,7 +34,7 @@ $("#myprogress-bar").deboo({
 
 ## API
 
-Check the API and method usage with example here: https://nehalpatel.in/deboo
+Check the API and method usage with example here: [Example](http://nehalpatel.in/deboo){:target="_blank"}
 
 ## Release History
  * **v0.1.0** - 2015-03-12
